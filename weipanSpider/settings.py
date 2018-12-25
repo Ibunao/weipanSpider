@@ -111,3 +111,7 @@ FilesPipeline 配置
 FILES_STORE = './download/first/files'
 # 设置文件过期时间30天
 FILES_EXPIRES = 30
+
+# 延时下载
+DOWNLOAD_DELAY = 0.5 # 500 ms of delay
+
