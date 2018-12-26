@@ -114,4 +114,6 @@ FILES_EXPIRES = 30
 
 # 延时下载
 DOWNLOAD_DELAY = 0.5 # 500 ms of delay
+# 请求异常不进行重复 retry
+RETRY_ENABLED: False
 

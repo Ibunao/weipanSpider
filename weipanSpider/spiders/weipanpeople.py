@@ -88,8 +88,8 @@ class WeipanpeopleSpider(scrapy.Spider):
             self.page[response.meta['filepath']] = 1
         self.page[response.meta['filepath']] += 1
         # 测试下载 只下载第一页
-        if response.meta['filepath'] == '／' and self.page['/'] >= 2:
-            return
+        # if response.meta['filepath'] == '/' and self.page['/'] >= 2:
+        #     return
 
         # 防止一直往下循环的bug 目前限定50页
         if self.page[response.meta['filepath']] >= 50:

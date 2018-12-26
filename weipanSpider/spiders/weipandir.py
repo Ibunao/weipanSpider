@@ -22,6 +22,7 @@ class WeipandirSpider(scrapy.Spider):
     target_url = 'http://vdisk.weibo.com/s/z9WlaCbN77J2f?parents_ref=z9WlaCbN77J2f&category_id=0&pn='
     # 测试多层目录下载
     # target_url = 'http://vdisk.weibo.com/s/uiPfBB4iBrNH?parents_ref=uiPfBB4iBrNH&category_id=0&pn='
+    # target_url = 'http://vdisk.weibo.com/s/uiPfBB4iE2dr?category_id=0&parents_ref=,uiPfBB4iBrNH'
 
     # 保存的基础路径。为了避免覆盖，建议爬取不同的用户时设置不同的目录
     route = 'temp'
@@ -82,9 +83,15 @@ class WeipandirSpider(scrapy.Spider):
         if self.page.get(response.meta['filepath']) is None:
             self.page[response.meta['filepath']] = 1
         self.page[response.meta['filepath']] += 1
-        # 测试下载前两页
-        # if self.page['/'] >= 3:
+
+        # 测试下载 只下载第一页
+        # if response.meta['filepath'] == '/' and self.page['/'] >= 2:
         #     return
+
+        # 防止一直往下循环的bug 目前限定50页
+        if self.page[response.meta['filepath']] >= 50:
+            return
+
         if self.dirtarget_url.get(response.meta['filepath']) is None:
             target_url = self.target_url
         else:

@@ -3,3 +3,4 @@ download/*
 .idea/*
 .idea/vcs.xml
 .DS_Store
+download/*
